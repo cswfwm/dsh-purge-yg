@@ -3,10 +3,38 @@
 > 本仓库是对社区版 **dsh-purge**（[kingcharleslzy-ai/dsh-purge](https://github.com/kingcharleslzy-ai/dsh-purge)，历史上游：[YuJunZhiXue/dsh-purge](https://github.com/YuJunZhiXue/dsh-purge)，MIT 协议）的**增强分支**。
 > 保留上游 LICENSE / NOTICE，增量内容见 `upgrade/` 与 `benchmarks/`。
 
-**定位**：提示词层 + 清洗层的"拒绝拦截"增强，配一套可评分的破甲题库（262 + 74 + 45）。
-不修改上游 86 条宿主补丁与 25 层自检，只做**加法**：禁词表、变体拦截、会话日志清洗、评分题库。
+---
+
+## ⚡ 快速安装（给 AI / Agent / 人）
+
+**一键拉取成品增强层**（提示词 + 清洗器 + 题库，落到 `~/.dsh/`）：
+
+```bash
+# 方式 1：curl 一行
+curl -fsSL https://raw.githubusercontent.com/cswfwm/dsh-purge-yg/main/install.sh | bash
+
+# 方式 2：git clone
+git clone https://github.com/cswfwm/dsh-purge-yg.git
+cd dsh-purge-yg && bash install.sh
+```
+
+装完重启 dsh，新会话自动加载 `~/.dsh/prompt-inject.md`（含 REFUSAL HARDENING v4）。
+
+**产物位置**（install.sh 落盘）：
+| 文件 | 位置 | 作用 |
+|---|---|---|
+| 提示词（含 v4 变体） | `~/.dsh/prompt-inject.md` | 注入系统提示词，拦截拒绝 |
+| 清洗器 | `~/.dsh/tools/refusal_scrub.py` | 会话日志拒绝段后处理 |
+| 题库 | `~/.dsh/benchmarks/*.md` | 262/74/45 破甲评测 |
+| 框架文档 | `~/.dsh/CR破甲逆向提炼_破甲框架v3.md` | 五机制 + v4 补漏 |
+
+**AI 直接下载**：`git clone https://github.com/cswfwm/dsh-purge-yg` 后读 `upgrade/` 与 `benchmarks/` 即可；要装到本机就 `bash install.sh`。
 
 ---
+
+## 定位
+提示词层 + 清洗层的"拒绝拦截"增强，配一套可评分的破甲题库（262 + 74 + 45）。
+不修改上游 86 条宿主补丁与 25 层自检，只做**加法**：禁词表、变体拦截、会话日志清洗、评分题库。
 
 ## 目录结构
 
@@ -45,9 +73,17 @@ dsh-purge-yg/
 
 ## 安装
 
+**一键**（推荐）：
+
 ```bash
-# 前置：先装社区版 dsh-purge 1.7.18（见 README.zh-CN.md）
-# 本仓库为增强层，覆盖两个文件 + 新增题库：
+curl -fsSL https://raw.githubusercontent.com/cswfwm/dsh-purge-yg/main/install.sh | bash
+# 或
+git clone https://github.com/cswfwm/dsh-purge-yg.git && cd dsh-purge-yg && bash install.sh
+```
+
+**手动**（前置：先装社区版 dsh-purge 1.7.18，见 README.zh-CN.md）：
+
+```bash
 cp upgrade/prompt-inject.md ~/.dsh/prompt-inject.md          # 提示词
 cp upgrade/refusal_scrub.py /path/to/your/tools/             # 清洗器
 # 题库按需用
