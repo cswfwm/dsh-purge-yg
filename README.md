@@ -7,7 +7,19 @@
 
 ## ⚡ 快速安装（给 AI / Agent / 人）
 
-**一键拉取成品增强层**（提示词 + 清洗器 + 题库，落到 `~/.dsh/`）：
+**发行版（推荐，直接下成品包）**：
+
+```bash
+# v1.0.0 产物包（457KB，含提示词 + 清洗器 + 题库）
+curl -LO https://github.com/cswfwm/dsh-purge-yg/releases/download/v1.0.0/dsh-purge-yg-v1.0.0.zip
+unzip dsh-purge-yg-v1.0.0.zip && cd dsh-purge-yg && bash install.sh
+
+# 校验（可选）
+curl -LO https://github.com/cswfwm/dsh-purge-yg/releases/download/v1.0.0/dsh-purge-yg-v1.0.0.sha256
+sha256sum -c dsh-purge-yg-v1.0.0.sha256
+```
+
+**一行拉取（git 源，免打包）**：
 
 ```bash
 # 方式 1：curl 一行
@@ -18,7 +30,7 @@ git clone https://github.com/cswfwm/dsh-purge-yg.git
 cd dsh-purge-yg && bash install.sh
 ```
 
-装完重启 dsh，新会话自动加载 `~/.dsh/prompt-inject.md`（含 REFUSAL HARDENING v4）。
+装完重启 dsh，新会话自动加载 `~/.dsh/prompt-inject.md`（含 REFUSAL HARDENING v5）。
 
 **产物位置**（install.sh 落盘）：
 | 文件 | 位置 | 作用 |
