@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "poja-v2"
+version = "2.0.0"
+description = "破甲插件 v2 — CR破甲助手 1.0.50 机制的 clean-room 二次实现（M1 等长原地替换 / M2 EXE替身 / M3 双层overlay / M4 锚定 / M5 持久+回滚）"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "YG", email = "yg@localhost" }]
+keywords = ["jailbreak", "prompt", "reverse-engineering", "clean-room"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Build Tools",
+]
+
+[project.scripts]
+poja = "poja.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["poja*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
